@@ -1,0 +1,24 @@
+{
+  "name": "better experience for wikipedia",
+  "version": "1.1",
+  "permissions": [
+    "tabs",
+    "webRequestBlocking",
+    "webRequest", 
+    "http://en.wikipedia.org/*"
+  ],
+ "background": {"scripts": ["jquery-1.7.2.min.js","background.js"] },
+  "web_accessible_resources": ["background.jpg","loading-big.gif","header-bg.png"],
+  "content_scripts": [
+    {
+      "matches": ["http://en.wikipedia.org/*"],
+      "js": ["jquery-1.7.2.min.js", "jquery.extend.js","content.js"],
+      "css":["base--theme-2.css","bulk.css"]
+    }
+  ],
+  "browser_action": {
+      "name": "better wiki experience",
+      "default_icon":"icon.png"
+  },
+  "manifest_version": 2
+}
