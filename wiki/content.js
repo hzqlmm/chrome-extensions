@@ -19,140 +19,61 @@ chrome.extension.onRequest.addListener(function (req, sender, sendResponse) {
     console.log(req);
 });
 
-$(document).ready(function () {
-    $.get('http://www.baidu.com/', function (data) {
-        $('html').prepend($(data).html());
-    });
+$('#toctitle').bind('click', function () {
+    newPage = $('html').html();
+    $('html').find('*').remove();
+    $('html').html(originalPage);
 });
 
-//$(document).ready(function () {
-//    $(":header").each(function () {
-//        if ($(this).children('span[id]').length > 0) {
-//            $(this).attr('id', ($(this).children('span[id]:first').attr('id')));
-//        }
-//    });
-//
-//    var iconURL = chrome.extension.getURL("background.jpg");
-//    var body = $('<body></body>');
-//    var infobox = $('table.infobox');
-//    var firstHeading = $('#firstHeading');
-//
-//
-//    if ($('table#toc').exists()) {
-//        $('table#toc span.tocnumber').remove();
-//        $('table#toc li').removeClass();
-//        $('table#toc li').addClass('toc-li-class');
-//        $('table#toc li ul').hide();
-//        var ul = $('#toc ul:first');
-//        ul.attr('id', 'toc');
-//        body.prepend(ul);
-//    }
-//
-//    $('table#infobox').remove();
-//    $('div#footer').remove();
-//    $('table#toc').remove();
-//    $('div#siteSub').remove();
-//    $('#firstHeading').remove();
-//    $('sup').remove();
-//
-//    var index = 0;
-//    $('table:not([id=infobox])').each(function () {
-//        $(this).attr('id', 'table-' + index);
-//        index++;
-//    });
-//    var tables = $('table:not([id=infobox])');
-//    tables.find('*').removeAttr('style');
-//
-//    var html = getContent__buildHTMLForNode($('body').get(0), true);
-//    $('html').children(':not(#loading)').remove();
-//    body.append(html);
-//    $('html').append(body);
-//
-//    if (infobox.exists()) {
-//        var result = $("<table id='infobox'></table>");
-//        result.append(infobox.html());
-//        result.find('*').removeClass();
-//        $('div#bodyContent').prepend(result);
-//        if ($('#infobox tr:has(img):first').index() == 1) {
-//            $('#infobox tr:even').css('background', '-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(25, 25, 25, .1)), color-stop(0.5, black))');
-//        } else {
-//            $('#infobox tr:odd').css('background', '-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(25, 25, 25, .1)), color-stop(0.5, black))');
-//        }
-//    }
-//
-//    if (firstHeading.exists()) {
-//        var text = firstHeading.text();
-//        firstHeading.find('*').remove();
-//        firstHeading.text(text);
-//        $('#content').prepend(firstHeading);
-//    }
-//
-//    var left = $('div#bodyContent').offset().left;
-//    $('#content').children().offset({left:left});
-//
-//    var width = $('div#bodyContent').width();
-//    $('#content').children().css('width', width);
-//
-//    $('#content').css('color', 'white');
-//    $('#bodyContent').css('color', 'white');
-//
-//    $('#content').hover(
-//        function () {
-//            $('a').css('color', 'lightblue');
-//        },
-//        function () {
-//            $('a').css('color', 'white');
-//        }
-//    );
-//    $('body').css('backgroundImage', 'url(' + iconURL + ')');
-//    $('#content').css('height', $('#content').height() + 50);
-//
-//    $('table:not([id=infobox])').each(function () {
-//        var id = $(this).attr('id');
-//        console.log(tables.find(['id=' + id]));
-////        $(this).before(tables.find(['id=' + id]));
-////        $(this).remove();
-//    });
-//
-//
-////    $('table:not([id=infobox])').each(function () {
-////        $(this).find('tr th[rowspan]').each(function () {
-////            var rowspan = $(this).attr('rowspan');
-////            var tr = $(this).parent();
-////            while (rowspan > 1) {
-////                tr.next().prepend($(this).clone());
-////                tr = tr.next();
-////                rowspan--;
-////            }
-////        });
-////
-////        $(this).find('tr').each(function () {
-////            var tds = $(this).find("td");
-////            var tr = $(this);
-////            var next = tr.next();
-////            $(this).find("td[rowspan]").each(function () {
-////                if ($(this).attr('rowspan') != undefined && $(this).attr('rowspan') > 1) {
-////                    var rowspan = $(this).attr('rowspan');
-////                    while (rowspan > 1) {
-////                        var index = tds.index($(this));
-////                        if (index == 0) {
-////                            next.prepend('<td></td>')
-////                        } else {
-////                            next.find(':nth-child(' + index + ')').after('<td></td>');
-////                        }
-////                        next = next.next();
-////                        rowspan--;
-////                    }
-////                }
-////                next = tr.next();
-////            });
-////        });
-////    });
-//
-////    $('tr th[rowspan]').removeAttr('rowspan');
-////    $('tr td[rowspan]').removeAttr('rowspan');
-//    $("td:empty").remove();
-//});
+var originalPage;
+var newPage;
+var body;
+$(document).ready(function () {
+    originalPage = $('html').html();
+
+    var menu = $("<div id='mcs_container'><div class='customScrollBox'> <div class='horWrapper'> <div class='container'> <div class='content'></div> </div> <div class='dragger_container'> <div class='dragger'></div> </div> </div> </div> </div>");
+
+    $('#catlinks,span.tocnumber,script,div.printfooter,#mw-articlefeedback,div.articleFeedback-panel div.references-column-width,hr,head,#protected-icon,a#top,#mw-js-message,#siteNotice,#jump-to-nav,#contentSub,#mw-head,#mw-panel,#footer,#mw-page-base,#mw-head-base,#siteSub,sup,table.ambox-style').remove();
+    $('#References').parent().find('~*').remove();
+    $('#References').parent().remove();
+    $('html').find('*').removeClass();
+    $('html').find('*').removeAttr('style');
+
+    if ($('table#toc').exist()) {
+        var ul = $("<ul id='toc'></ul>");
+        var li = $('#toc ul:first').find('li');
+        ul.append(li);
+        menu.find('.content').prepend(ul);
+        $('table#toc').remove();
+        $('body').prepend(menu);
+        $('div.dragger').css('height', '60px');
+        $('a[href=#References]').parent().find('~*').remove();
+    }
+
+    var left = $('div#bodyContent').offset().left;
+    $('#content').children().offset({left:left});
+
+    var width = $('div#bodyContent').width();
+    $('#content').children().css('width', width);
+
+    $('#content').css('color', 'white');
+    $('#bodyContent').css('color', 'white');
+    $('#content').offset({top:0});
+
+    $('#content').hover(
+        function () {
+            $('a').css('color', 'lightblue');
+        },
+        function () {
+            $('a').css('color', 'white');
+        }
+    );
+
+    $('body').css('backgroundImage', 'url(' + chrome.extension.getURL("background.jpg") + ')');
+    $('#content').css('height', $('#content').height() + 20);
+    $("#mcs_container").mCustomScrollbar("vertical", 1000, "easeOutCirc", 1.05, "fixed", "yes", "yes", 20);
+
+});
 
 function isScrolledIntoView(elem) {
     var docViewTop = $(window).scrollTop();

@@ -37,9 +37,8 @@ q:before, q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-    margin-bottom: 1.415em; /*18 /13*/
+    margin-bottom: 1.415em;
     width: 100%;
-    table-layout:fixed;
 }
 
 article, aside, details, figcaption, figure,
@@ -109,21 +108,16 @@ blockquote {
     padding-left: 1em;
 }
 
-/* lists */
-ul, ol {
-    margin: 0 0 1.5em 1em;
-}
-
 ol li {
     list-style-type: decimal;
     list-style-position: inside;
 }
 
 ul li {
-    list-style-type: disc;
+    list-style: none;
+    font-style: italic;
     list-style-position: inside;
 }
-
 
 thead {
     font-weight: bold;
@@ -194,7 +188,8 @@ pre code, code pre {
 }
 
 #bodyContent {
-    width: 48em;
+    max-width: 48em;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     text-align: justify;
@@ -209,8 +204,10 @@ pre code, code pre {
 
 #content {
     -webkit-box-shadow: rgba(255, 255, 255, 1) 0px 0px 60px inset;
-    width: 48em;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    max-width: 48em;
 }
 
 #firstHeading {
@@ -220,43 +217,18 @@ pre code, code pre {
     text-align: center;
 }
 
-td ul li {
-    list-style-type: none;
-    margin: 10px;
-    padding: 10px;
-    -webkit-box-shadow: inset rgba(255, 255, 255, 1) 0px 0px 30px;
-}
-
-ul#toc {
-    position: fixed;
-    width: 240px;
-    left: 0;
-    top: -12px;
-}
-
-#toc li ul {
-    margin: auto;
-}
-
-.toc-li-class {
-    list-style-type: none;
-    margin: 10px;
-    padding: 10px;
-    -webkit-box-shadow: inset rgba(255, 255, 255, 1) 0px 0px 30px;
-}
-
 #infobox th {
     font-weight: bold;
 }
 
-tr td {
-border:1px solid;
-text-align:center;
+table tr td {
+    border: 1px solid rgba(255, 255, 255, .1);
+    text-align: center;
 }
 
-tr th {
-border:1px solid;
-text-align:center;
+table tr th {
+    border: 1px solid rgba(255, 255, 255, .1);
+    text-align: center;
 }
 
 /*table {
@@ -265,14 +237,25 @@ border-spacing: 1px;
 table-layout:fixed;
 }*/
 
-
 /*tr:nth-child(odd) {*/
-    /*background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.6)));*/
+/*background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0, 0, 0, 0.2)), to(rgba(0, 0, 0, 0.6)));*/
 /*}*/
 
 /*tr:nth-child(even) {*/
-    /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(25, 25, 25, .2)), color-stop(60%, rgba(0, 0, 0, .8)), color-stop(100%, rgba(0, 0, 0, 1)));*/
+/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(25, 25, 25, .2)), color-stop(60%, rgba(0, 0, 0, .8)), color-stop(100%, rgba(0, 0, 0, 1)));*/
 /*}*/
+
+/*ul#toc {*/
+/*position: fixed;*/
+/*width: 18%;*/
+/*top: 0;*/
+/*}*/
+
+#toc > li {
+    padding: 10px;
+    font-size: 16px;
+    font-style: normal;
+}
 
 
 	
