@@ -244,20 +244,34 @@ table tr th {
 
 .sidebar_menu {
     width: 70px;
-    height: 100%;
-    -webkit-box-shadow: rgba(10, 10, 10, 1) -5px 0px 30px inset;
-    border-right: solid 1px rgba(200, 200, 200, .1);
+    height: 200%;
+    -webkit-box-shadow: rgb(255, 255, 255) 0px 0px 5px inset;
     position: fixed;
     color: white;
+    top: -5px;
+    -webkit-transition: -webkit-box-shadow 1s linear;
 }
 
+.sidebar_menu:hover {
+    -webkit-box-shadow: rgb(255, 255, 255) 0px 0px 15px inset;
+
+}
+
+/*.sidebar_menu >p {*/
+/*margin: 24px 0 0 0px;*/
+/*-webkit-box-shadow: black 0 0 10px inset;*/
+/*padding: 10px 0 10px 0px;*/
+/*font-weight: bold;*/
+/*cursor: pointer;*/
+/*text-align: center;*/
+/*}*/
+
 .sidebar_menu >p {
-    margin: 24px 0 0 0px;
-    -webkit-box-shadow: black 0 0 10px inset;
-    padding: 10px 0 10px 0px;
-    font-weight: bold;
-    cursor: pointer;
-    text-align: center;
+    margin: 20px 0 0 10px;
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    -webkit-border-radius: 5px;
 }
 
 .close_icon {
@@ -289,18 +303,6 @@ body {
     right: 0;
     overflow-y: scroll;
     overflow-x: hidden;
-}
-
-::-webkit-scrollbar {
-    width: 2px;
-}
-
-::-webkit-scrollbar-track {
-    background: black;
-}
-
-::-webkit-scrollbar-thumb {
-    background: white;
 }
 
 .menucontainer {

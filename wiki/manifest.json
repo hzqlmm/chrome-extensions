@@ -8,7 +8,7 @@
     "http://en.wikipedia.org/*"
   ],
  "background": {"scripts": ["jquery-1.7.2.min.js","background.js"] },
-  "web_accessible_resources": ["background.jpg","loading-big.gif","header-bg.png"],
+  "web_accessible_resources": ["background.jpg","loading-big.gif","header-bg.png","menu.png","menu_editor.png"],
   "content_scripts": [
     {
       "matches": ["http://en.wikipedia.org/*"],
@@ -18,8 +18,11 @@
       "jquery.mousewheel.min.js",
       "jquery-ui.min.js",
       "jquery.mCustomScrollbar.js",
-      "content.js"],
-      "css":["base--theme-2.css","jquery.mCustomScrollbar.css","bulk.css"]
+      "document_start.js",
+      "jstorage.js"],
+      // "js":["jquery-1.7.2.min.js","document_start.js"],
+      "css":["base--theme-2.css","jquery.mCustomScrollbar.css","bulk.css"],
+      "run_at":"document_start"
     }
   ],
   "browser_action": {
