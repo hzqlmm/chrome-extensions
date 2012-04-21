@@ -195,7 +195,7 @@ pre code, code pre {
     text-align: justify;
     font-size: 14px;
     line-height: 1.5em;
-    color: #333;
+    color: white !important;
 }
 
 #bodyContent div {
@@ -208,7 +208,10 @@ pre code, code pre {
     margin-right: auto;
     width: 60%;
     max-width: 48em;
+    -webkit-border-radius: 10px;
     -webkit-transition: -webkit-box-shadow 1s linear;
+    top: 0;
+    color: #ffffff;
 }
 
 #content:hover {
@@ -309,6 +312,39 @@ body {
     width: 20%;
     height: 100%;
     position: fixed;
+}
+
+img {
+    -webkit-border-radius: 5px;
+    -webkit-box-shadow: black 0 0 10px;
+}
+
+button {
+    min-width: 60px;
+}
+
+.extension_options {
+    margin-left: 5%;
+    height: 50px;
+    width: 90%;
+}
+
+.extension_options span {
+    margin-right: 10px;
+    padding: 25px 2px 0 2px;
+    font-style: normal;
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+    display: inline-block;
+    height: 50px;
+    background: #f08080;
+    cursor: pointer;
+    -webkit-box-shadow: rgba(0, 0, 0, 1) 1px 1px 5px;
+}
+
+.extension_options span:hover {
+    background: #add8e6;
 }
 
 	

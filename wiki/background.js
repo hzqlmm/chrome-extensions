@@ -27,4 +27,12 @@
 //function updateAddress(tabId) {
 //}
 
+// chrome.tabs.query({status:"complete", url:"http://www.xiami.com/artist/10702"}, function (tabs) {
+//     for (var i = tabs.length - 1; i >= 0; i--) {
+//         chrome.tabs.update(tabs[i].id, {active:true}, function (tab) {
+//             console.log(tab);
+//         });
+//     }
+// })
+
 
