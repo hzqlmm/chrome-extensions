@@ -13,9 +13,16 @@
 //     },
 //     ["blocking"]);
 
-// chrome.tabs.onUpdated.addListener(function (tabId, props) {
-//     chrome.tabs.sendRequest(tabId, {html:"good"});
-// });
+chrome.tabs.onUpdated.addListener(function (tabId, props) {
+    if (props.status == 'complete') {
+        chrome.tabs.sendRequest(tabId, {html:"complete"});
+    }
+});
+
+chrome.extension.onRequest.addListener(function (req, sender, sendResponse) {
+    sendResponse({tabId:sender.tab.id});
+    console.log(sender.tab.id);
+});
 //
 //chrome.extension.onRequest.addListener(function (request) {
 //});
