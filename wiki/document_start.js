@@ -70,7 +70,7 @@ $(document).ready(function () {
         var href = $(this).attr("href");
         var go = href.substr(href.lastIndexOf('/') + 1);
         var newTrack = item + "||" + $('#firstHeading span').text() + "||" + tabId;
-        $.jStorage.set(go, track == "" ? newTrack : "||" + newTrack);
+        $.jStorage.set(go, track == "" ? newTrack : track + "||" + newTrack);
         return true;
     });
     $('#track a').click(function () {
@@ -108,6 +108,12 @@ $(document).ready(function () {
     $(window).scroll(function () {
         $.jStorage.set(window.location.pathname, $(window).scrollTop());
     });
+
+    $('#track li >a').click(function () {
+        chrome.extension.sendRequest({url:'http://en.wikipedia.org' + $(this).attr('href')}, function (response) {
+        });
+        return false;
+    })
 });
 
 chrome.extension.onRequest.addListener(function (req, sender, sendResponse) {
@@ -139,6 +145,32 @@ chrome.extension.onRequest.addListener(function (req, sender, sendResponse) {
             'img[src*=magnify-clip],' +
             'img[src*=Magnify-clip],' +
             'table.ambox-style').remove();
+
+        var left = $('#bodyContent').offset().left;
+        var width = $('#bodyContent').width();
+        $('table').each(function () {
+            if ($(this).width() != width) {
+                var style = $(this).attr('style');
+                style == undefined ? "" : style;
+                style += ';-webkit-transform: scale(' + width / $(this).width() + ')';
+                $(this).attr('style', style);
+                $(this).offset({left:left});
+            }
+        });
+        $('a[href^="/w/"]').parent().remove();
+        $('p').each(function () {
+            if ($(this).text() == "") {
+                $(this).remove();
+            }
+        });
+
+        $('#toc li').each(function () {
+            if ($(this).next().offset() != null && $(this).next().offset().top > ($('#mcs_container').height() + $('#mcs_container').offset().top)) {
+                $('#mcs_container').css('height', $(this).offset().top + $(this).height() + 10 - $('#mcs_container').offset().top);
+                return false;
+            }
+        });
+
         $('#mw-content-text').after('<br>');
     }
 });

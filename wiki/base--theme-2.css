@@ -27,6 +27,13 @@ blockquote, q {
     quotes: none;
 }
 
+blockquote {
+    font-style: italic;
+    border-left: 5px solid;
+    margin-left: 2em;
+    padding-left: 1em;
+}
+
 blockquote:before, blockquote:after, q:before, q:after {
     content: '';
     content: none;
@@ -87,13 +94,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1.5em;
 }
 
-blockquote {
-    font-style: italic;
-    border-left: 5px solid;
-    margin-left: 2em;
-    padding-left: 1em;
-}
-
 ol li {
     list-style-type: decimal;
     list-style-position: inside;
@@ -129,8 +129,8 @@ strong {
 }
 
 pre, code, tt {
-    font-size: .875em; /*12 / 14*/
-    line-height: 1.75em; /*21 / 12*/
+    font-size: .875em;
+    line-height: 1.75em;
 }
 
 h1 {
@@ -167,18 +167,11 @@ pre code, code pre {
 }
 
 #bodyContent {
-    max-width: 48em;
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
     text-align: justify;
     font-size: 14px;
     line-height: 1.5em;
     color: white !important;
-}
-
-#bodyContent div {
-    margin-bottom: 1.5em;
 }
 
 #content {
@@ -186,15 +179,15 @@ pre code, code pre {
     margin-left: auto;
     margin-right: auto;
     width: 60%;
-    max-width: 48em;
+    max-width: 44em;
     -webkit-border-radius: 10px;
     -webkit-transition: -webkit-box-shadow 1s linear;
     top: 0;
-    color: #ffffff;
+    padding: 0 2em;
 }
 
 #content:hover {
-    -webkit-box-shadow: rgba(255, 255, 255, 1) 0px 0px 30px inset;
+    -webkit-box-shadow: rgba(255, 255, 255, 1) 0px 0px 24px inset;
 }
 
 #firstHeading {
