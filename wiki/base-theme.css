@@ -19,6 +19,11 @@ time, mark, audio, video {
     vertical-align: baseline;
 }
 
+sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+
 ol, ul {
     list-style: none;
 }
@@ -35,7 +40,6 @@ blockquote {
 }
 
 blockquote:before, blockquote:after, q:before, q:after {
-    content: '';
     content: none;
 }
 
@@ -44,10 +48,6 @@ table {
     border-spacing: 0;
     margin-bottom: 1.415em;
     width: 100%;
-}
-
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-    display: block;
 }
 
 h1, h2, h3 {
@@ -86,11 +86,7 @@ a {
     color: white;
 }
 
-p, blockquote, div {
-    margin-bottom: 1.5em;
-}
-
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p, blockquote {
     margin-bottom: 1.5em;
 }
 
@@ -133,10 +129,6 @@ pre, code, tt {
     line-height: 1.75em;
 }
 
-h1 {
-    margin-bottom: 1em;
-}
-
 h1 + h2 {
     margin-top: .2em;
     margin-bottom: 2.15em;
@@ -175,19 +167,26 @@ pre code, code pre {
 }
 
 #content {
-    -webkit-box-shadow: rgba(255, 255, 255, 1) 0px 0px 12px inset;
     margin-left: auto;
     margin-right: auto;
     width: 60%;
     max-width: 44em;
-    -webkit-border-radius: 10px;
+    /*-webkit-border-radius: 10px;*/
     -webkit-transition: -webkit-box-shadow 1s linear;
     top: 0;
     padding: 0 2em;
+    margin-bottom: 0;
+    margin-top: -1.5em;
+    -webkit-box-shadow: 0px 5px 15px black;
 }
 
+/*#content {*/
+/*float: left;*/
+/*margin: 0 2em;*/
+/*}*/
+
 #content:hover {
-    -webkit-box-shadow: rgba(255, 255, 255, 1) 0px 0px 24px inset;
+    -webkit-box-shadow: rgba(255, 255, 255, 1) 0px 12px 24px inset;
 }
 
 #firstHeading {
@@ -212,26 +211,33 @@ table tr td, table tr th {
     font-style: normal;
 }
 
-body {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
 .menucontainer {
     width: 20%;
-    height: 100%;
+    height: 90%;
+    float: left;
     position: fixed;
+    top: 0;
 }
 
 img {
     max-width: 100%;
     -webkit-border-radius: 5px;
     -webkit-box-shadow: black 0 0 10px;
+    background: rgba(255, 255, 255, .95);
+    padding: 5px;
+    margin: 10px 0 0 0;
+}
+
+td img {
+    margin: 10px 0;
+}
+
+button img {
+    -webkit-border-radius: 0;
+    -webkit-box-shadow: 0 0 0;
+    background: transparent;
+    padding: 0;
+    margin: 0;
 }
 
 button {
@@ -266,4 +272,19 @@ table ul li {
     display: inline;
 }
 
-	
+.leftBorder {
+    width: 5px;
+    height: 100%;
+    -webkit-box-shadow: rgb(255, 255, 255) 0px 0px 12px;
+    float: left;
+    position: fixed;
+}
+
+/*.rightBorder {*/
+/*width: 5px;*/
+/*height: 100%;*/
+/*-webkit-box-shadow: rgb(255, 255, 255) 0px 0px 12px;*/
+/*margin-left: 60%;*/
+/*position: fixed;*/
+/*}*/
+

@@ -4,14 +4,31 @@ chrome.extension.sendRequest({}, function (response) {
 });
 
 $(document).ready(function () {
-    $('html').css('backgroundImage', 'url(' + chrome.extension.getURL("background.jpg") + ')');
-
+    $('table.ambox').remove();
+    $('#toc a[href=#References]').parent().find('~*').remove();
+    $('#toc a[href=#References]').parent().remove();
     $('#content~*').remove();
     $('.printonly').remove();
-    $('html').find('*').removeClass();
-    $('html').find('*').removeAttr('style');
+    $('*[class]').removeClass();
+    $('*[style]').removeAttr('style');
+    $('html').css('backgroundImage', 'url(' + chrome.extension.getURL("background.jpg") + ')');
 
-    var menu = $("<div class='menucontainer'><div class='extension_options'><span>TRACK</span></div><div id='mcs_container' class='translate'><div class='customScrollBox'> <div class='horWrapper'> <div class='container'> <div class='content'></div> </div> <div class='dragger_container'> <div class='dragger'></div> </div> </div> </div> </div></div>");
+    var item = window.location.pathname;
+    item = item.replace('/wiki/', '');
+    var track = $.jStorage.get(item);
+    track = track == null ? "" : track;
+
+    var menu = $("<div class='menucontainer'><div class='extension_options'><span>TRACK</span></div><div id='mcs_container'><div class='customScrollBox'> <div class='horWrapper'> <div class='container'> <div class='content'></div> </div> <div class='dragger_container'> <div class='dragger'></div> </div> </div> </div> </div></div>");
+    var paths = $('<ul id="track" style="display: none;"></ul>');
+    if (track.length > 0) {
+        var parts = track.split('||');
+        for (var i = 0; i < parts.length; i = i + 3) {
+            paths.append('<li><a href=/wiki/' + parts[i] + ' tabId=' + parts[i + 2] + '>' + parts[i + 1] + '</a></li>');
+        }
+    }
+    menu.find('.content').append(paths);
+
+    $.jStorage.deleteKey(item);
     if ($('table#toc').exist()) {
         var toc = $("<ul id='toc'></ul>");
         var li = $('#toc ul:first').find('li');
@@ -19,26 +36,11 @@ $(document).ready(function () {
         menu.find('.content').prepend(toc);
         $('table#toc').remove();
         $('body').prepend(menu);
-        $('div.dragger').css('height', '60px');
-        $('a[href=#References]').parent().find('~*').remove();
-        $('a[href=#References]').parent().remove();
+    } else if (track.length > 0) {
+        $('body').prepend(menu);
+        $('ul#track').show();
     }
 
-    var item = window.location.pathname;
-    item = item.replace('/wiki/', '');
-    var track = $.jStorage.get(item);
-    track = track == null ? "" : track;
-    console.log(track);
-
-    var paths = $('<ul id="track" style="display: none;"></ul>');
-    if (track.length > 0) {
-        var parts = track.split('||');
-        for (var i = 0; i < parts.length; i = i + 3) {
-            paths.append('<li><a href=/wiki/' + parts[i] + ' tabId=' + parts[i + 2] + '>' + parts[i + 1] + '</a></li>');
-        }
-        $('#toc').after(paths);
-    }
-    $.jStorage.deleteKey(item);
 
     $('#content,#mcs_container').hover(
         function () {
@@ -56,7 +58,7 @@ $(document).ready(function () {
             $(this).css('color', 'lightblue');
         });
 
-    $("#mcs_container").mCustomScrollbar("vertical", 1000, "easeOutCirc", 1.05, "fixed", "yes", "no", 20);
+    $("#mcs_container").mCustomScrollbar("vertical", 500, "easeOutCirc", 1.05, "auto", "yes", "yes", 20);
     $('.sidebar_menu >p').click(function () {
         if ($(this).text() == 'MENU') {
             $('.sidebar_menu').animate({left:'-20%'}, 500, function () {
@@ -74,14 +76,6 @@ $(document).ready(function () {
         return true;
     });
     $('#track a').click(function () {
-
-    });
-
-    $('img').each(function () {
-        var img = $(this).get(0);
-        if (img.clientWidth < 50 && img.clientHeight < 50) {
-            $(this).css({'-webkit-border-radius':0, '-webkit-box-shadow':'0 0 0'});
-        }
     });
 
     $('.extension_options span').click(function () {
@@ -113,7 +107,7 @@ $(document).ready(function () {
         chrome.extension.sendRequest({url:'http://en.wikipedia.org' + $(this).attr('href')}, function (response) {
         });
         return false;
-    })
+    });
 });
 
 chrome.extension.onRequest.addListener(function (req, sender, sendResponse) {
@@ -140,7 +134,7 @@ chrome.extension.onRequest.addListener(function (req, sender, sendResponse) {
             '#mw-page-base,' +
             '#mw-head-base,' +
             '#siteSub,' +
-            'sup,' +
+            'sup[id],' +
             'img[src*=\\/info\\.png],' +
             'img[src*=magnify-clip],' +
             'img[src*=Magnify-clip],' +
@@ -151,7 +145,7 @@ chrome.extension.onRequest.addListener(function (req, sender, sendResponse) {
         $('table').each(function () {
             if ($(this).width() != width) {
                 var style = $(this).attr('style');
-                style == undefined ? "" : style;
+                style = style == undefined ? "" : style;
                 style += ';-webkit-transform: scale(' + width / $(this).width() + ')';
                 $(this).attr('style', style);
                 $(this).offset({left:left});
@@ -171,7 +165,18 @@ chrome.extension.onRequest.addListener(function (req, sender, sendResponse) {
             }
         });
 
+        $('#mcs_container .dragger').hover(
+            function () {
+                $(this).css('background', 'lightblue');
+            },
+            function () {
+                $(this).css('background', 'white');
+            }
+        );
+
         $('#mw-content-text').after('<br>');
+        $('#bodyContent div').css('marginBottom', '1.5em');
+//        $('#content').css('height', $('#content').height() + 400);
     }
 });
 

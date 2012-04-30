@@ -19,7 +19,7 @@
       "jstorage.js",
       "document_start.js"
       ],
-      "css":["base--theme-2.css","jquery.mCustomScrollbar.css"],
+      "css":["base-theme.css","jquery.mCustomScrollbar.css"],
       "run_at":"document_start"
     }
   ],
