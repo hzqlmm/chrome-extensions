@@ -24,6 +24,11 @@ sup {
     font-size: smaller;
 }
 
+sub {
+    vertical-align: sub;
+    font-size: smaller;
+}
+
 ol, ul {
     list-style: none;
 }
@@ -97,8 +102,24 @@ ol li {
 
 ul li {
     list-style: none;
-    font-style: italic;
-    list-style-position: inside;
+    /*list-style-position: inside;*/
+}
+
+table li {
+    display: inline;
+}
+
+table li::after {
+    content: " ·";
+    font-weight: bold;
+}
+
+table li:last-child::after {
+    content: none;
+}
+
+#content li {
+    margin-bottom: 1em;
 }
 
 thead {
@@ -113,11 +134,7 @@ thead th, tfoot th {
 
 td {
     vertical-align: top;
-    padding: .2em .2em .2em .6em;
-}
-
-em {
-    font-style: italic;
+    padding: 0 0.4em;
 }
 
 strong {
@@ -171,22 +188,11 @@ pre code, code pre {
     margin-right: auto;
     width: 60%;
     max-width: 44em;
-    /*-webkit-border-radius: 10px;*/
-    -webkit-transition: -webkit-box-shadow 1s linear;
     top: 0;
     padding: 0 2em;
     margin-bottom: 0;
     margin-top: -1.5em;
-    -webkit-box-shadow: 0px 5px 15px black;
-}
-
-/*#content {*/
-/*float: left;*/
-/*margin: 0 2em;*/
-/*}*/
-
-#content:hover {
-    -webkit-box-shadow: rgba(255, 255, 255, 1) 0px 12px 24px inset;
+    -webkit-box-shadow: 0 5px 15px black;
 }
 
 #firstHeading {
@@ -224,7 +230,7 @@ img {
     -webkit-border-radius: 5px;
     -webkit-box-shadow: black 0 0 10px;
     background: rgba(255, 255, 255, .95);
-    padding: 5px;
+    padding: 3px 1px;
     margin: 10px 0 0 0;
 }
 
@@ -267,24 +273,3 @@ button {
 .extension_options span:hover {
     background: #f08080;
 }
-
-table ul li {
-    display: inline;
-}
-
-.leftBorder {
-    width: 5px;
-    height: 100%;
-    -webkit-box-shadow: rgb(255, 255, 255) 0px 0px 12px;
-    float: left;
-    position: fixed;
-}
-
-/*.rightBorder {*/
-/*width: 5px;*/
-/*height: 100%;*/
-/*-webkit-box-shadow: rgb(255, 255, 255) 0px 0px 12px;*/
-/*margin-left: 60%;*/
-/*position: fixed;*/
-/*}*/
-

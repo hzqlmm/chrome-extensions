@@ -4,13 +4,18 @@ chrome.extension.sendRequest({}, function (response) {
 });
 
 $(document).ready(function () {
-    $('table.ambox').remove();
+    $('div.noprint.plainlinks.hlist.navbar.mini,sup.Template-Fact').remove();
+    var visibleOnes = $(':not(span[style*="visibility:hidden"])');
+    visibleOnes.find('table.ambox').remove();
+    $('table,th,tr,div').removeAttr('style');
+    $('div.thumb,div.thumb a').css('color', 'antiqueWhite');
+    $('div,li').css('width', '');
+    $('span.printonly').remove();
+    $('a[href^=#cite_ref]').remove();
+    visibleOnes.find('[class]').removeClass();
     $('#toc a[href=#References]').parent().find('~*').remove();
     $('#toc a[href=#References]').parent().remove();
     $('#content~*').remove();
-    $('.printonly').remove();
-    $('*[class]').removeClass();
-    $('*[style]').removeAttr('style');
     $('html').css('backgroundImage', 'url(' + chrome.extension.getURL("background.jpg") + ')');
 
     var item = window.location.pathname;
@@ -39,8 +44,12 @@ $(document).ready(function () {
     } else if (track.length > 0) {
         $('body').prepend(menu);
         $('ul#track').show();
+        $('div.extension_options').hide();
     }
 
+    if (track == "") {
+        $('div.extension_options').hide();
+    }
 
     $('#content,#mcs_container').hover(
         function () {
@@ -48,6 +57,7 @@ $(document).ready(function () {
         },
         function () {
             $(this).find('a').css('color', 'white');
+            $('div[style*="rgb(250, 235, 215)"] a').css('color', 'antiqueWhite');
         });
 
     $('a').hover(
@@ -58,7 +68,7 @@ $(document).ready(function () {
             $(this).css('color', 'lightblue');
         });
 
-    $("#mcs_container").mCustomScrollbar("vertical", 500, "easeOutCirc", 1.05, "auto", "yes", "yes", 20);
+    $("#mcs_container").mCustomScrollbar("vertical", 500, "easeOutCirc", 1.05, "auto", "yes", "yes", 10);
     $('.sidebar_menu >p').click(function () {
         if ($(this).text() == 'MENU') {
             $('.sidebar_menu').animate({left:'-20%'}, 500, function () {
@@ -90,10 +100,12 @@ $(document).ready(function () {
                 $('#toc').hide();
                 $('#track').show();
                 $('.extension_options span').text('MENU');
+                $("#mcs_container").mCustomScrollbar("vertical", 500, "easeOutCirc", 1.05, "auto", "yes", "yes", 10);
             } else {
                 $('#toc').show();
                 $('#track').hide();
                 $('.extension_options span').text('TRACK');
+                $("#mcs_container").mCustomScrollbar("vertical", 500, "easeOutCirc", 1.05, "auto", "yes", "yes", 10);
             }
             $('.extension_options').fadeIn(500);
         });
@@ -176,7 +188,6 @@ chrome.extension.onRequest.addListener(function (req, sender, sendResponse) {
 
         $('#mw-content-text').after('<br>');
         $('#bodyContent div').css('marginBottom', '1.5em');
-//        $('#content').css('height', $('#content').height() + 400);
     }
 });
 
