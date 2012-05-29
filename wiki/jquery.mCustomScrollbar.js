@@ -186,6 +186,9 @@
                 //vertical scrolling ------------------------------
             } else {
                 var visibleHeight = $customScrollBox.height();
+                console.log(visibleHeight);
+                console.log($customScrollBox_container.height());
+                console.log($customScrollBox.data("contentHeight"));
                 if ($customScrollBox_container.height() > visibleHeight) {
                     $dragger.css("display", "block");
                     if (reloadType != "resize" && $customScrollBox_container.height() != $customScrollBox.data("contentHeight")) {
@@ -202,15 +205,13 @@
 
                     function AdjustDraggerHeight() {
                         if (draggerDimType == "auto") {
-                            var adjDraggerHeight = Math.round(totalContent - ((totalContent - visibleHeight) * 1.5));
-                            console.log(adjDraggerHeight);
-                            console.log(minDraggerHeight);
+                            var adjDraggerHeight = Math.round(draggerContainerHeight * ((visibleHeight) / totalContent));
                             if (adjDraggerHeight <= minDraggerHeight) {
-                                $dragger.css("height", minDraggerHeight + "px").css("line-height", minDraggerHeight + "px");
+                                $dragger.css("height", minDraggerHeight + "px");
                             } else if (adjDraggerHeight >= draggerContainerHeight) {
-                                $dragger.css("height", draggerContainerHeight - 10 + "px").css("line-height", draggerContainerHeight - 10 + "px");
+                                $dragger.css("height", draggerContainerHeight + "px");
                             } else {
-                                $dragger.css("height", adjDraggerHeight + "px").css("line-height", adjDraggerHeight + "px");
+                                $dragger.css("height", adjDraggerHeight + "px");
                             }
                         }
                     }

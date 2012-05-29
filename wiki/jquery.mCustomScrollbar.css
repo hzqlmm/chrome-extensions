@@ -27,7 +27,7 @@
 #mcs_container .dragger_container {
     position: absolute;
     width: 4px;
-    height: 300px;
+    height: 400px;
     margin: 0 0 0 98%;
     background: #000;
 }
