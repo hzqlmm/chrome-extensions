@@ -3,10 +3,10 @@ h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
+u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
+caption, tfoot, thead,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
@@ -29,10 +29,6 @@ sub {
     font-size: smaller;
 }
 
-ol, ul {
-    list-style: none;
-}
-
 blockquote, q {
     quotes: none;
 }
@@ -47,13 +43,6 @@ blockquote {
 blockquote:before, blockquote:after, q:before, q:after {
     content: none;
 }
-
-/*table {*/
-/*border-collapse: collapse;*/
-/*border-spacing: 0;*/
-/*margin-bottom: 1.415em;*/
-/*width: 100%;*/
-/*}*/
 
 h1, h2, h3 {
     font-weight: bold;
@@ -100,26 +89,8 @@ ol li {
     list-style-position: inside;
 }
 
-ul li {
-    list-style: none;
-    /*list-style-position: inside;*/
-}
-
-table li {
-    display: inline;
-}
-
-table li::after {
-    content: " ·";
-    font-weight: bold;
-}
-
 table li:last-child::after {
     content: none;
-}
-
-#content li {
-    margin-bottom: 1em;
 }
 
 thead {
@@ -131,11 +102,6 @@ thead th, tfoot th {
     padding: .2em .2em .2em .6em;
     text-transform: uppercase;
 }
-
-/*td {*/
-/*vertical-align: top;*/
-/*padding: 0 0.4em;*/
-/*}*/
 
 strong {
     font-weight: bold;
@@ -185,10 +151,8 @@ pre code, code pre {
 
 #bodyContent {
     width: 100%;
-    text-align: justify;
     font-size: 14px;
     line-height: 1.5em;
-    color: white !important;
 }
 
 #content {
@@ -203,6 +167,10 @@ pre code, code pre {
     -webkit-box-shadow: 0 5px 15px black;
 }
 
+#content li {
+    margin-bottom: 3px;
+}
+
 #firstHeading {
     position: relative;
     padding-top: 1em;
@@ -213,11 +181,6 @@ pre code, code pre {
 #infobox th {
     font-weight: bold;
 }
-
-/*table tr td, table tr th {*/
-/*border: 1px solid rgba(255, 255, 255, .1);*/
-/*text-align: center;*/
-/*}*/
 
 #toc>li, #track > li {
     padding: 10px;
@@ -236,15 +199,16 @@ pre code, code pre {
 .img-frame {
     max-width: 100%;
     -webkit-border-radius: 5px;
-    -webkit-box-shadow: black 0 0 10px;
+    /*-webkit-box-shadow: black 0 0 10px;*/
     background: rgba(255, 255, 255, .95);
     padding: 3px;
     margin: 10px 0;
 }
 
-/*td img {*/
-/*margin: 10px 0;*/
-/*}*/
+.table-frame {
+    -webkit-border-radius: 5px;
+    -webkit-box-shadow: black 0 0 10px;
+}
 
 button img {
     -webkit-border-radius: 0;
@@ -280,5 +244,9 @@ button {
 
 .extension_options span:hover {
     background: #f08080;
+}
+
+p {
+    text-align: justify;
 }
 
