@@ -62,6 +62,8 @@ function handleCaptionElement() {
 
 
 $(document).ready(function () {
+    var $feedback = $('#mw-articlefeedback');
+    console.log($feedback);
     $('table.navbox,' +
         'table.ambox,' +
         '#coordinates,' +
@@ -255,6 +257,9 @@ $(document).ready(function () {
 
 chrome.extension.onRequest.addListener(function (req, sender, sendResponse) {
     if (req.html == 'complete') {
+        var $feedback = $('#mw-articlefeedback');
+        console.log($feedback);
+
         $('#References').parent().find('~*').remove();
         $('#References').parent().remove();
         $('html').find('div[id*=articlefeedback],' +
@@ -328,6 +333,8 @@ chrome.extension.onRequest.addListener(function (req, sender, sendResponse) {
         );
 
         $('#mw-content-text').after('<br>');
+
+        setTimeout("$('#mw-articlefeedback').remove()", 500);
     }
 });
 
