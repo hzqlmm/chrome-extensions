@@ -6,7 +6,6 @@
     "http://en.wikipedia.org/wiki/*"
   ],
  "background": {"scripts": ["background.js"] },
- "web_accessible_resources": ["background.jpg","loading-big.gif","header-bg.png","menu.png","menu_editor.png"],
  "content_scripts": [
     {
       "matches": ["http://en.wikipedia.org/wiki/*"],
@@ -19,7 +18,7 @@
       "jstorage.js",
       "document_start.js"
       ],
-      "css":["base-theme.css","jquery.mCustomScrollbar.css"],
+      "css":["base-theme.css"],
       "run_at":"document_start"
     }
   ],
