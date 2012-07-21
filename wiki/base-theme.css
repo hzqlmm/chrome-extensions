@@ -77,7 +77,7 @@ h4 {
 
 a {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 h1, h2, h3, h4, h5, h6, p, blockquote {
@@ -164,7 +164,6 @@ pre code, code pre {
     padding: 0 2em;
     margin-bottom: 0;
     margin-top: -1.5em;
-    -webkit-box-shadow: 0 5px 15px black;
 }
 
 #content li {
@@ -174,7 +173,7 @@ pre code, code pre {
 #firstHeading {
     position: relative;
     padding-top: 1em;
-    color: white;
+    color: black;
     text-align: center;
 }
 
@@ -182,68 +181,8 @@ pre code, code pre {
     font-weight: bold;
 }
 
-#toc>li, #track > li {
-    padding: 10px;
-    font-size: 16px;
-    font-style: normal;
-}
-
-.menucontainer {
-    width: 20%;
-    height: 90%;
-    float: left;
-    position: fixed;
-    top: 0;
-}
-
-.img-frame {
-    max-width: 100%;
-    -webkit-border-radius: 5px;
-    /*-webkit-box-shadow: black 0 0 10px;*/
-    background: rgba(255, 255, 255, .95);
-    padding: 3px;
-    margin: 10px 0;
-}
-
-.table-frame {
-    -webkit-border-radius: 5px;
-    -webkit-box-shadow: black 0 0 10px;
-}
-
-button img {
-    -webkit-border-radius: 0;
-    -webkit-box-shadow: 0 0 0;
-    background: transparent;
-    padding: 0;
-    margin: 0;
-}
-
 button {
     min-width: 60px;
-}
-
-.extension_options {
-    margin-left: 5%;
-    height: 50px;
-    width: 90%;
-}
-
-.extension_options span {
-    margin-right: 10px;
-    padding: 25px 2px 0 2px;
-    font-style: normal;
-    color: white;
-    font-weight: bolder;
-    text-align: center;
-    display: inline-block;
-    height: 50px;
-    cursor: pointer;
-    background: #add8e6;
-    -webkit-box-shadow: rgba(0, 0, 0, 1) 1px 1px 5px;
-}
-
-.extension_options span:hover {
-    background: #f08080;
 }
 
 p {
