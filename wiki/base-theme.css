@@ -44,8 +44,16 @@ blockquote:before, blockquote:after, q:before, q:after {
     content: none;
 }
 
+blockquote div {
+    text-align: justify;
+}
+
 h1, h2, h3 {
     font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    overflow: hidden;
 }
 
 h1 {
@@ -187,5 +195,36 @@ button {
 
 p {
     text-align: justify;
+}
+
+table {
+    border: 1px solid #AAA;
+    background-color: #F9F9F9;
+}
+
+table.wikitable {
+    margin: 1em 1em 1em 0;
+    background-color: #F9F9F9;
+    border: 1px #AAA solid;
+    border-collapse: collapse;
+    color: black;
+}
+
+table.wikitable > tr > th, table.wikitable > tr > td, table.wikitable > * > tr > th, table.wikitable > * > tr > td {
+    border: 1px #AAA solid;
+    padding: 0.2em;
+}
+
+.infobox {
+    border: 1px solid #AAA;
+    background-color: #F9F9F9;
+    color: black;
+    margin: 0.5em 0 0.5em 1em;
+    padding: 0.2em;
+    float: right;
+    clear: right;
+    text-align: left;
+    font-size: 88%;
+    line-height: 1.5em;
 }
 
