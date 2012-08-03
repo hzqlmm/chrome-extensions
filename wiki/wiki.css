@@ -1,0 +1,158 @@
+div#simpleSearch input#searchInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 92%;
+    margin: 0;
+    padding: 0;
+    padding-left: 0.2em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    outline: none;
+    border: none;
+    font-size: 13px;
+    background-color: transparent;
+    direction: ltr;
+}
+
+div#simpleSearch {
+    display: block;
+    width: 14em;
+    height: 1.4em;
+    position: fixed;
+    min-height: 1px;
+    border: solid 1px #AAA;
+    color: black;
+    background-color: white;
+    background-position: top left;
+    background-repeat: repeat-x;
+    right: 20px;
+    top: 10px;
+}
+
+div#simpleSearch div {
+    position: absolute;
+    width: 8%;
+    right: 0;
+    top: 0;
+    padding: 0;
+    padding-top: 0.3em;
+    padding-bottom: 0.2em;
+    padding-right: 0.4em;
+    margin: 0;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    background-image: none;
+}
+
+#suggestion {
+    background: white;
+    margin-top: 22px;
+    border: solid 1px #AAA;
+    padding: 1px;
+    margin-left: -1px;
+    margin-right: -1px;
+    list-style-type: none;
+    font-size: 14px;
+}
+
+#suggestion li {
+    padding: 1px;
+    cursor: pointer;
+}
+
+.highlight {
+    background: lightgreen;
+}
+
+#suggestion li:hover {
+    background: lightgreen;
+}
+
+ul.cssTabs {
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline;
+}
+
+#content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 44em;
+}
+
+#toc {
+    padding: 5px;
+    color: black;
+    height: 241px;
+    direction: ltr;
+    display: table;
+    font-size: 12px;
+    /*margin-top: 4px;*/
+    margin-left: -4px;
+    border-radius: 10px;
+    font-family: sans-serif;
+    border: solid whiteSmoke;
+    border-collapse: separate;
+    line-height: 19.200000762939453px;
+    background: #F9F9F9 none repeat 0 0;
+}
+
+#toc ul {
+    list-style-type: none;
+}
+
+#toc td>ul {
+    padding: 10px 5px;
+}
+
+#toc li {
+    padding-bottom: 5px;
+}
+
+#toc ul>li:last-child {
+    padding-bottom: 0;
+}
+
+#toc li>ul {
+    margin-left: 12px;
+    margin-top: 5px;
+}
+
+ul.cssTabs > li {
+    background-color: rgb(249, 249, 249);
+    color: #3a3a3a;
+    display: inline-block;
+    text-shadow: 1px 1px 0 #d3d3d3;
+    margin-right: 20px;
+}
+
+ul.cssTabs > li:first-child {
+    padding: 10px 20px;
+    border-right: 1px dotted rgb(220, 220, 220);
+}
+
+ul.cssTabs > li:first-child:hover {
+    background-color: rgb(220, 220, 220);
+    border-radius: 0 0 10px 10px;
+}
+
+#toolBar {
+    position: fixed;
+    border: solid whiteSmoke;
+    border-radius: 0 0 10px 10px;
+    height: 36px;
+    background-color: rgb(249, 249, 249);
+}
+
+#toolBar input {
+    width: 240px;
+}
+
+#toolBar li>div {
+    position: absolute;
+    top: 11px;
+    right: 24px;
+}
