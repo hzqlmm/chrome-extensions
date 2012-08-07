@@ -1,3 +1,10 @@
+escapeJquerySelector = function (selector) {
+    return selector.replace(
+        /([$%&()*+,./:;<=>?@\[\\\]^\{|}~])/g,
+        '\\$1'
+    );
+};
+
 handleCenter = function () {
   $('center').each(function () {
     $(this).before($(this).children());
@@ -202,7 +209,7 @@ addToolBar = function () {
     }, function () {
       toc.hide();
       $('#content').show();
-      if (scrollTop != -1)
+      if (scrollTop > 0)
         $(window).scrollTop(scrollTop);
       $('ul.cssTabs li:first').css({'background-color':'rgb(245, 245, 245)', 'border-radius':'0 0 0 0'});
       toolBar.css({position:'fixed', top:0});
@@ -212,7 +219,8 @@ addToolBar = function () {
     function () {
       $('#suggestion').hide();
       $('#toolBar input').blur();
-      scrollTop = $(window).scrollTop();
+      if($('#content').is(':visible'))
+        scrollTop = $(window).scrollTop();
       toc.show();
       $('#content').hide();
       $(this).css({'background-color':'rgb(220, 220, 220)', 'border-radius':'0 0 10px 10px'});
@@ -225,7 +233,7 @@ addToolBar = function () {
     toc.hide();
     $('#content').show();
     var href = $(this).attr('href');
-    $(window).scrollTop($(href).position().top - 45);
+    $(window).scrollTop($(escapeJquerySelector(href)).position().top - 45);
   });
 
   addSearchBox();
