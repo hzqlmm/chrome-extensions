@@ -17,6 +17,7 @@ time, mark, audio, video {
     font: inherit;
     font-family: Helvetica, Arial;
     vertical-align: baseline;
+    text-align: justify;
 }
 
 img {
@@ -163,7 +164,7 @@ pre code, code pre {
 
 #bodyContent {
     width: 100%;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.5em;
 }
 

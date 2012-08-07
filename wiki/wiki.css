@@ -1,73 +1,29 @@
-div#simpleSearch input#searchInput {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 92%;
-    margin: 0;
-    padding: 0;
-    padding-left: 0.2em;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
-    outline: none;
-    border: none;
-    font-size: 13px;
-    background-color: transparent;
-    direction: ltr;
-}
-
-div#simpleSearch {
-    display: block;
-    width: 14em;
-    height: 1.4em;
-    position: fixed;
-    min-height: 1px;
-    border: solid 1px #AAA;
-    color: black;
-    background-color: white;
-    background-position: top left;
-    background-repeat: repeat-x;
-    right: 20px;
-    top: 10px;
-}
-
-div#simpleSearch div {
-    position: absolute;
-    width: 8%;
-    right: 0;
-    top: 0;
-    padding: 0;
-    padding-top: 0.3em;
-    padding-bottom: 0.2em;
-    padding-right: 0.4em;
-    margin: 0;
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-    background-image: none;
-}
-
 #suggestion {
-    background: white;
-    margin-top: 22px;
-    border: solid 1px #AAA;
-    padding: 1px;
-    margin-left: -1px;
-    margin-right: -1px;
+    background: #F9F9F9;
+    margin: 0 0 0 135px;
     list-style-type: none;
-    font-size: 14px;
+    font-size: 13px;
+    box-shadow: green 0 0 10px;
+    border: solid whiteSmoke;
+    border-radius: 10px;
+    font-family: sans-serif;
+    width: 300px;
+
 }
 
 #suggestion li {
-    padding: 1px;
+    padding: 5px;
     cursor: pointer;
 }
 
 .highlight {
-    background: lightgreen;
+    background: lightblue;
+    border-radius: 5px;
 }
 
 #suggestion li:hover {
-    background: lightgreen;
+    border-radius: 5px;
+    background: lightblue;
 }
 
 ul.cssTabs {
@@ -84,32 +40,30 @@ ul.cssTabs {
 }
 
 #toc {
-    padding: 5px;
     color: black;
-    height: 241px;
-    direction: ltr;
     display: table;
-    font-size: 12px;
-    /*margin-top: 4px;*/
-    margin-left: -4px;
+    font-size: 13px;
     border-radius: 10px;
     font-family: sans-serif;
     border: solid whiteSmoke;
+    box-shadow: green 0 0 10px;
     border-collapse: separate;
-    line-height: 19.200000762939453px;
-    background: #F9F9F9 none repeat 0 0;
+    line-height: 19px;
+    background: #F9F9F9;
 }
 
 #toc ul {
     list-style-type: none;
 }
 
-#toc td>ul {
-    padding: 10px 5px;
+#toc a {
+    padding: 2px 0;
+    display: block;
 }
 
-#toc li {
-    padding-bottom: 5px;
+#toc a:hover{
+    border-radius: 3px;
+    background: lightblue;
 }
 
 #toc ul>li:last-child {
@@ -118,7 +72,6 @@ ul.cssTabs {
 
 #toc li>ul {
     margin-left: 12px;
-    margin-top: 5px;
 }
 
 ul.cssTabs > li {
@@ -144,15 +97,20 @@ ul.cssTabs > li:first-child:hover {
     border: solid whiteSmoke;
     border-radius: 0 0 10px 10px;
     height: 36px;
+    width: auto;
+    left: 5px;
+    right: 5px;
+    box-shadow: black 0 0 5px;
     background-color: rgb(249, 249, 249);
 }
 
 #toolBar input {
-    width: 240px;
+    float: left;
+    width: 200px;
+    margin-top: -5px;
 }
 
-#toolBar li>div {
-    position: absolute;
-    top: 11px;
-    right: 24px;
+#toolBar li>img {
+    margin-left: -15px;
+    margin-top: -1px;
 }

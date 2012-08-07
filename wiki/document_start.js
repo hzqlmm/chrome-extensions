@@ -1,8 +1,3 @@
-var tabId = -1;
-chrome.extension.sendRequest({}, function (response) {
-  tabId = response.tabId;
-});
-
 handleCenter = function () {
   $('center').each(function () {
     $(this).before($(this).children());
@@ -11,8 +6,15 @@ handleCenter = function () {
 };
 
 handleTable = function () {
-  $('table').each(function () {
-    if ($(this).hasClass('infobox'))return true;
+  var tables = $('table');
+  var firstTable = tables.filter(':first');
+  if (!firstTable.hasClass('infobox')) {
+    if (firstTable.text().trim() == "")
+      firstTable.remove();
+    firstTable.css('float', 'none');
+  }
+
+  tables.filter(':gt(0)').each(function () {
     if ($(this).text().trim() == "")
       $(this).remove();
 
@@ -96,12 +98,16 @@ handleP = function () {
       $(this).remove();
     }
 
-    $(this).find('img').each(function () {
-      if ($(this).width() > 25 || $(this).height() > 25) {
-        $(this).css('text-align', 'left');
-        return false;
-      }
-    });
+    handleTextAlign($(this));
+  });
+};
+
+handleTextAlign = function (element) {
+  element.find('img').each(function () {
+    if ($(this).width() > 25 || $(this).height() > 25) {
+      $(this).css('text-align', 'left');
+      return false;
+    }
   });
 };
 
@@ -118,9 +124,7 @@ removeElements = function () {
 };
 
 addSearchBox = function () {
-  $('#content').before('<div id="simpleSearch"> <input type="text" name="search" value="" title="Search Wikipedia" accesskey="f" id="searchInput" tabindex="1" placeholder="Search" autocomplete="off"> <div  title="Search Wikipedia for this text"><img id="search-ltr" alt="Search"></div></div>');
-  $('#search-ltr').attr({src:chrome.extension.getURL("search-ltr.png")});
-  $('#simpleSearch input').keydown(function (event) {
+  $('#toolBar input').keydown(function (event) {
     if (event.which == 40) {
       var highlight = $('#suggestion').find('li.highlight');
       if (highlight.length == 0) {
@@ -146,13 +150,15 @@ addSearchBox = function () {
       highlight.prev().addClass('highlight');
     }
   });
-  $('#simpleSearch input').focusin(function () {
+  $('#toolBar input').focusin(function () {
     $('#suggestion').show();
+    $('#toc').hide();
+    $('#toolBar li:first').css({'background-color':'rgb(249, 249, 249)'});
   });
-  $('#simpleSearch input').focusout(function () {
+  $('#toolBar input').focusout(function () {
     $('#suggestion').hide();
   });
-  $('#simpleSearch input').keyup(function (event) {
+  $('#toolBar input').keyup(function (event) {
     if (event.which == 37 || event.which == 38 || event.which == 39 || event.which == 40)    // left,up,right,down
       return;
     if (event.which == 13) {               //enter
@@ -166,7 +172,7 @@ addSearchBox = function () {
         suggestion.append("<li>" + json[1].pop() + "</li>");
       }
       if (suggestion.find('li').length > 0) {
-        $('#simpleSearch').append(suggestion);
+        $('#toolBar').append(suggestion);
       }
       suggestion.find('li').click(function () {
         window.open("http://en.wikipedia.org/wiki/" + $(this).text().replace(/\s/g, '_'), "_blank");
@@ -181,15 +187,12 @@ addMenu = function () {
   toc.find('#toctitle').remove();
   toc.find('span.toctoggle').remove();
   toc.find('tr,td').removeAttr('style');
-  toc.hover(function () {
-    $(this).find('a').css('color', 'green');
-  }, function () {
-    $(this).find('a').css('color', 'black');
-  });
 };
 
+var scrollTop = -1;
 addToolBar = function () {
-  var toolBar = $('<div id="toolBar"><ul class="cssTabs"><li>CONTENTS</li><li><input type="text" name="search" value="" title="Search Wikipedia" accesskey="f" id="searchInput" tabindex="1" placeholder="Search" autocomplete="off"> <div  title="Search Wikipedia for this text"><img id="search-ltr" alt="Search"></div></li></ul><div style="height: 4px"></div></div></div>')
+  var toolBar = $('<div id="toolBar"><ul class="cssTabs"><li>CONTENTS</li><li><input type="text" name="search" value="" id="searchInput" tabindex="1" placeholder="Search" autocomplete="off"><img id="search-ltr" alt="Search"></li></ul><div style="height: 10px"></div></div></div>')
+
   $('#content').before(toolBar);
   toolBar.find('#search-ltr').attr({src:chrome.extension.getURL("search-ltr.png")});
   toolBar.css('left', ($(window).width() - toolBar.width()) / 2);
@@ -198,20 +201,34 @@ addToolBar = function () {
     function () {
     }, function () {
       toc.hide();
-      $('#content').css('opacity', 1);
+      $('#content').show();
+      if (scrollTop != -1)
+        $(window).scrollTop(scrollTop);
       $('ul.cssTabs li:first').css({'background-color':'rgb(245, 245, 245)', 'border-radius':'0 0 0 0'});
-      toolBar.css({position:'fixed', top:0})
+      toolBar.css({position:'fixed', top:0});
     }
   );
-  $('ul.cssTabs li:first').hover(
+  $('ul.cssTabs li:first').mouseenter(
     function () {
+      $('#suggestion').hide();
+      $('#toolBar input').blur();
+      scrollTop = $(window).scrollTop();
       toc.show();
-      $('#content').css('opacity', 0.05);
+      $('#content').hide();
       $(this).css({'background-color':'rgb(220, 220, 220)', 'border-radius':'0 0 10px 10px'});
       toolBar.css({position:'absolute', top:$(window).scrollTop()});
     });
   toolBar.css({'z-index':100});
-  $('#firstHeading').css('z-index', '-1');
+  toc.find('a').click(function (e) {
+    scrollTop = -1;
+    e.preventDefault();
+    toc.hide();
+    $('#content').show();
+    var href = $(this).attr('href');
+    $(window).scrollTop($(href).position().top - 45);
+  });
+
+  addSearchBox();
 };
 
 var toc;
@@ -232,7 +249,6 @@ window.onload = function () {
   handleOl();
   handleP();
   handleDiv();
-//  addSearchBox();
   addMenu();
   addToolBar();
 };
