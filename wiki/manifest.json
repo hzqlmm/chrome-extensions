@@ -6,7 +6,7 @@
         "http://en.wikipedia.org/wiki/*"
     ],
     "background": {"scripts": ["background.js"] },
-    "web_accessible_resources": ["search-ltr.png","arrow.png"],
+    "web_accessible_resources": ["search-ltr.png","arrow.png","grey.gif"],
     "icons": {
         "128": "icon.png",
         "48": "icon.png",

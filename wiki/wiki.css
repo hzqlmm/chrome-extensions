@@ -82,12 +82,19 @@ ul.cssTabs > li {
     margin-right: 20px;
 }
 
-ul.cssTabs > li:first-child {
+li.unvailable{
+    color: gray;
     padding: 10px 20px;
-    border-right: 1px dotted rgb(220, 220, 220);
+    cursor: not-allowed;
+    border-right: 1px dotted rgb(220, 220, 220);  
 }
 
-ul.cssTabs > li:first-child:hover {
+li.contents{
+    padding: 10px 20px;
+    border-right: 1px dotted rgb(220, 220, 220); 
+}
+
+li.contents:hover {
     background-color: rgb(220, 220, 220);
     border-radius: 0 0 10px 10px;
 }
